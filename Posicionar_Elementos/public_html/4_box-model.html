@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Posicionar Elementos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=600">
+        <link rel="stylesheet" href="css/style.css">	
+        <link rel="stylesheet" href="css/code.css">	
+
+          <style>
+            .simple {
+                width: 500px;
+                margin: 20px auto;
+                -webkit-box-sizing: content-box;
+                -moz-box-sizing: content-box;
+                box-sizing: content-box;
+            }
+
+            .fancy {
+                width: 500px;
+                margin: 20px auto;
+                padding: 50px;
+                border-width: 10px;
+                -webkit-box-sizing: content-box;
+                -moz-box-sizing: content-box;
+                box-sizing: content-box;
+            }
+        </style>
+    </head>
+    <div id="container">
+        <h1 class="content">the box model</h1>
+        <p class="content">
+            While we're talking about width, we should talk about width's big caveat: the <em>box model</em>. When you set the width of an element, the element can actually appear bigger than what you set: the element's border and padding will stretch out the element beyond the specified width. Look at the following example, where two elements with the same width value end up different sizes in the result.
+        </p>
+
+        <figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.simple</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">500px</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">20px</span> <span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.fancy</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">500px</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">20px</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+  <span class="nl">border-width</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+        <div class="simple elem">
+            <span class="label">&lt;div class="simple"&gt;</span>
+            <p>
+                I'm smaller...
+            </p>
+            <span class="endlabel">&lt;/div&gt;</span>
+        </div>
+
+        <div class="fancy elem">
+            <span class="label">&lt;div class="fancy"&gt;</span>
+            <p>
+                And I'm bigger!
+            </p>
+            <span class="endlabel">&lt;/div&gt;</span>
+        </div>
+
+        <p class="content">
+            For generations, the solution to this problem has been extra math. CSS authors have always just written a smaller width value than what they wanted, subtracting out the padding and border. Thankfully, you don't have to do that anymore...
+        </p>
+
+        <div class="nav-wrapper">
+            <a class="nav prev" href="3_max-width.html">Previous</a>
+            <a class="nav next" href="5_box-sizing.html">Next</a>
+        </div>
+
+        <footer>
+            4 / 16
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Posicionar Elementos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=600">
+        <link rel="stylesheet" href="css/code.css">	
+        <link rel="stylesheet" href="css/style.css">	
+
+        <style>
+            #main {
+                width: 600px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body class="ltr">
+        <div id="container">
+
+            <h1 class="content">max-width</h1>
+
+            <figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#main</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">600px</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span> 
+<span class="p">}</span></code></pre></figure>
+            <div id="main" class="elem">
+                <span class="label">&lt;div id="main"&gt;</span>
+                <p>
+                    Using <code>max-width</code> instead of <code>width</code> in this situation will improve the browser's handling of small windows. This is important when making a site usable on mobile. Resize this page to check it out!
+                </p>
+                <p>
+                    By the way, <code>max-width</code> is <a href="http://caniuse.com/#search=max-width">supported by all major browsers</a> including IE7+ so you shouldn't be afraid of using it.
+                </p>
+                <span class="endlabel">&lt;/div&gt;</span>
+            </div>
+            <div class="nav-wrapper">
+                <a class="nav prev" href="2_margin-auto.html">Previous</a>
+                <a class="nav next" href="4_box-model.html">Next</a>
+            </div>
+            <footer>
+                3 / 16
+            </footer>
+        </div>
+    </body>
+</html>

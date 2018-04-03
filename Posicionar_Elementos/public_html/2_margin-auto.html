@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Posicionar Elementos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=600">
+        <link rel="stylesheet" href="css/style.css">	
+        <link rel="stylesheet" href="css/code.css">	
+
+        <style>
+            #main {
+                width: 600px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+       <body class="ltr">
+        <div id="container">
+            
+            <h1 class="content">margin: auto;</h1>
+
+            <figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#main</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">600px</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span> 
+<span class="p">}</span></code></pre></figure>
+            <div id="main" class="elem">
+                <span class="label">&lt;div id="main"&gt;</span>
+                <p>
+                    Setting the <code>width</code> of a block-level element will prevent it from stretching out to the edges of its container to the left and right. Then, you can set the left and right margins to <code>auto</code> to horizontally center that element within its container. The element will take up the width you specify, then the remaining space will be split evenly between the two margins.
+                </p>
+                <p>
+                    The only problem occurs when the browser window is narrower than the width of your element. The browser resolves this by creating a horizontal scrollbar on the page. Let's improve the situation...
+                </p>
+                <span class="endlabel">&lt;/div&gt;</span>
+            </div>
+
+            <div class="nav-wrapper">
+                <a class="nav prev" href="index.html">Previous</a>
+                <a class="nav next" href="3_max-width.html">Next</a>
+            </div>
+
+            <footer>
+                2 / 16
+            </footer>
+
+
+        </div>
+    </body>
+</html>

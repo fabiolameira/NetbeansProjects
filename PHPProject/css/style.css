@@ -1,0 +1,332 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 8/nov/2017, 18:00:32
+    Author     : Syfer
+*/
+
+/* ==========================================================================
+   Normalização de elementos CSS
+   ========================================================================== */
+
+body {
+    font-size: 0.5em;
+    line-height: 1.5;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #444;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+    font-size: 1.6em;
+    padding: 5px;
+}
+
+a:hover {
+    background-color: #444;
+    color:white;
+    text-decoration: none;
+}
+
+figure {
+    margin: 0;
+}
+
+h1  {
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 3em;
+    font-weight: 900;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 2.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 1.9em;
+    font-weight: 500;
+}
+
+
+p {
+    font-size: 1.6em;
+}
+
+img{
+    width: 100%;
+    border-radius:4px;
+}
+
+label{
+    font-size: 1.8em;
+}
+
+/* ==========================================================================
+   Classes Principais
+   ========================================================================== */
+
+.clearfix {
+    overflow: auto;
+    zoom: 1;
+}
+
+#container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    width: 100%;
+    margin-top: 3.5em;
+    margin-bottom: 1.5em;
+    font-size:0.9em;
+    position: relative;
+    overflow: hidden;
+    position: relative;
+}
+
+.logo {
+    float: left;
+    width: 10%;  
+}
+
+
+.menu {
+    width: 75%; 
+    float: right;
+    position:absolute;
+    bottom:5%;
+    right: 0;   
+}
+
+.menu ul {
+    float: right;    
+}
+
+.menu li {
+    font-size: 1.2em;
+    margin-left: 1em;
+    display: inline-block;
+
+}
+
+menu a{
+    padding: 10px;
+}
+
+.banner{
+    margin-bottom: 60px;
+}
+
+.section_wrapper{
+    background-color: #efefef;
+    padding:20px;
+    clear:both;
+    margin-bottom: 60px;
+    border-radius:4px;
+}
+
+.column-1{  
+    width: 100%;
+}
+.column-2 {
+    width: 49%;
+}
+.column-4 {
+    width: 23.5%;
+}
+
+.column-8 {
+    width: 10.75%;
+}
+
+.column-8 p{
+    font-size: 1.4em;
+}
+
+.column-1, .column-2, .column-4, .column-8{
+    float:left;
+    margin-right: 2%; 
+}
+.column-1:last-child, .column-2:last-child, .column-4:last-child, .column-8:last-child{
+    margin-right: 0;
+}
+
+
+.overlay{
+    position:relative;
+}
+
+.overlay_banner{
+    width: 20%;
+    padding: 2.4em 2.4em 0 2.4em;
+    position: absolute;
+    top:62px;
+    right: 0;
+    background-color: rgba(239, 184, 64, 0.8);
+    text-align: right;
+}
+
+
+.form{
+    margin-top: 40px;
+}
+.form-group{ 
+    margin-bottom: 10px;
+}
+
+.form-group label{ 
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+    margin-right: 2%;
+    font-weight: bold;
+}
+.form-group input{ 
+    width: 50%;
+    min-height: 30px;
+}
+
+.form-group input[type="submit"]{ 
+    margin-left: 27%;
+    width: 20%;
+    min-height: 40px;
+    margin-top: 10px;
+}
+
+
+.footer {
+    width: 100%;
+    margin-top: 2.4em;
+    margin-bottom: 2.4em;
+    float:left;
+    clear: both;
+}
+
+.footer a {
+    font-size: 1em;
+    padding: 0;
+}
+
+.footer a:hover {
+    background-color: #fff;
+    color: #555;
+    text-decoration: none; 
+}
+
+
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media screen and (max-width:599px) {
+
+    .header {
+        width: 100%;
+        margin-top: 3.5em;
+        margin-bottom: 1.5em;
+        font-size:0.9em;
+        min-height: 250px;
+    }
+
+    .logo {
+        width: 30%; 
+        float:none;
+        position: static;
+
+    }
+
+    .menu {
+        width: 100%; 
+        position: static;
+        margin-top: 10px;
+
+    }
+
+    .menu ul {
+        float:left; 
+        display: block;
+        list-style-type: disc;
+        -webkit-margin-before: 0em;
+        -webkit-margin-after: 0em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 0px;
+    }
+
+    .menu li {
+        font-size: 1.2em;
+        margin-left:0;
+        display:block;
+    }
+
+    menu a{
+        padding: 0;
+    }
+
+    .column-1{  
+        width: 100%;
+    }
+    .column-2 {
+        width: 100%;
+    }
+    .column-4 {
+        width: 100%;
+    }
+    .column-8 {
+        width: 49.0%;
+    }
+
+    .column-8 p{
+        font-size: 1.4em;
+    }  
+    .column-8:nth-child(even){
+        margin-right: 2%;
+    }
+    .column-8:nth-child(odd){
+        float:left;
+        margin-right: 0; 
+    }
+}
+
+
+@media print{
+
+    body{
+        font-size: 0.4em;
+    }
+
+    header, footer, #entorno, .column-4 img, .column-8 img{
+        display: none;
+    }
+
+    .column-4, .column-8{
+        width: 100%;
+    }
+    .banner{
+        margin-bottom: 10px;
+    }
+    .section_wrapper{
+        padding:0;
+        margin-bottom: 10px;
+    }
+
+}

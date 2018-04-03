@@ -1,0 +1,115 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 22, 2017, 9:42:27 AM
+    Author     : darkingw
+*/
+
+img {
+    width: 230px;
+}
+
+/*Procurar Imagens com Paralvras no Título:*/
+
+/*img[title] {
+    border: 5px solid red;
+}*/
+
+/*Procurar Imagens pela Primeira Palavra do Título:*/
+
+/*img[title ^= "Voluptatem"] {
+    border: 5px solid red;
+}*/
+
+/*Procurar Imagem por Qualquer Palavra no Meio do Título:*/
+
+/*img[title ~= "dolor"] {
+    border: 15px solid red;
+}*/
+
+/*Procurar Imagem pela Última Palavra do Título */
+
+/*img[title $= "nesciunt"] {
+    border: 15px solid red;
+}*/
+
+/*Procurar Imagem por Padrão no Título:*/
+
+/*img[title *= "upta"] {
+    border: 15px solid red;
+}*/
+
+
+/*######################### CSS 2D Transforms ################################*/
+
+/*img[title ^= "Voluptatem"] {
+    transform: translate(100px, 200px);
+}*/
+
+/*img[title ^= "Voluptatem"] {
+    transform: rotate(45deg);
+}*/
+
+/*img[title ^= "Voluptatem"] {
+    transform: scale(0.5,0.5);
+}*/
+
+/*img[title ^= "Voluptatem"] {
+    transform: skew(20deg, 30deg);
+}*/
+
+/*######################### CSS 3D Transforms ################################*/
+
+/*img[title ^= "Voluptatem"] {
+    transform: rotateZ(45deg);
+}*/
+
+/*########################## CSS Transitions #################################*/
+
+/*start*/
+/*img[title ^= "Voluptatem"]:hover {
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    transition: transform 1s;
+}
+
+img[title ^= "Voluptatem"]:hover {
+    -webkit-transform: scale(2,2);
+    -moz-transform: scale(2,2);
+    transform: scale(2,2);
+}*/
+/*end*/
+
+/*start*/
+/*img[title ^= "Voluptatem"]:hover {
+    -webkit-transition: -webkit-transform 2s;
+    -moz-transition: -moz-transform 2s;
+    transition: transform 2s;
+}
+
+img[title ^= "Voluptatem"]:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+}*/
+/*end*/
+
+/*start*/
+img[title ^= "Voluptatem"] {
+    position: relative;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes example {
+    0% {left: 0px; top: 0px}
+    25% {left: 0px; top: 300px}
+    50% {left: 300px; top: 300px}
+    75% {left: 300px; top: 0px}
+    100% {left: 0px; top: 0px}
+}
+/*end*/

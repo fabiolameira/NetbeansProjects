@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>Bootstrap</style>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-header">
+                <h1>Bootstrap Showcase III</h1>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2>Forms</h2>
+                </div>
+                <div class="col-sm-9">
+                    <div class="well">
+                        <form action="/action_page.php">
+                            <div class="form-group">
+                                <label for="email1">Email Adress:</label>
+                                <input type="email" class="form-control" id="email1">
+                            </div>
+                            <div class="form-group">
+                                <label for="pdw1">Password:</label>
+                                <input type="password" class="form-control" id="pdw1">
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox"> Lembrar</label>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submeter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <div class="well">
+                        <form class="form-inline" action="/action_page.php">
+                            <div class="form-group">
+                                <label for="email2">Email Adress:</label>
+                                <input type="email" class="form-control" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="pdw2">Password:</label>
+                                <input type="password" class="form-control" id="pdw2">
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox"> Lembrar</label>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submeter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <div class="well">
+                        <form class="form-horizontal" action="/action_page.php">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="email3">Email Adress:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="email3" placeholder="Inserir Email" name="email3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pdw3">Password:</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="pdw3" placeholder="Inserir Password" name="pdw3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="chackbox">
+                                        <label><input type="checkbox"> Lembrar</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-default">Submeter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2>Inputs</h2>
+                </div>
+                <div class="col-sm-9">
+                    <div class="well">
+                        <form>
+                            <div class="form-group">
+                                <label for="comment">Comentário:</label>
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="">Opção 1</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="">Opção 2</label>
+                                </div>
+                                <div class="checkbox disabled">
+                                    <label><input type="checkbox" value="" disabled>Opção 3</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio">Opção 1</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio">Opção 2</label>
+                                </div>
+                                <div class="radio disabled">
+                                    <label><input type="radio" name="optradio" disabled>Opção 3</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio">Opção 1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio">Opção 2
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio">Opção 3
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sell">Lista (escolha um):</label>
+                                <select class="form-control" id="sell">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                                <br/>
+                                <label for="sell2">Lista de escolha multimpla (segurar o shift para escolher)</label>
+                                <select multiple class="form-control" id="sell2">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2>Input Groups</h2>
+                </div>
+                <div class="col-sm-9">
+                    <div class="well">
+                        <form>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">Texto</span>
+                                <input id="msg" type="text" class="form-control" name="msg" placeholder="Informação adicional">
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2>Input Size</h2>
+                </div>
+                <div class="col-sm-9">
+                    <div class="well">
+                        <form>
+                            <div class="form-group">
+                                <label for="inputdefault">default input</label>
+                                <input class="form-control" id="inputdefault" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputlg">large input</label>
+                                <input class="form-control input-lg" id="inputlg" type="text">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>

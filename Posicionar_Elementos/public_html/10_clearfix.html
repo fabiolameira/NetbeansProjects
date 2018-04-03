@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Posicionar Elementos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=600">
+        <link rel="stylesheet" href="css/style.css">	
+        <link rel="stylesheet" href="css/code.css">	
+
+        <style>
+            .content img {
+                float: right;
+            }
+            .clear {
+                clear: both;
+            }
+
+            .clearfix {
+                overflow: auto;
+            }
+
+        </style>
+
+    </head>
+    <body class="ltr">   
+        <div id="container">
+
+            <h1 class="content">the clearfix hack</h1>
+
+            <p class="content">
+                Here is a weird, bad thing that can sometimes happen when using floats:
+            </p>
+
+            <figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">img</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+            <div class="content">
+                <div class="elem">
+                    <span class="label">&lt;div&gt;</span>
+                    <img src="img/ilta.png" alt="An Image">
+                    <p>
+                        Uh oh... this image is taller than the element containing it, and it's floated, so it's overflowing outside of its container!
+                    </p>
+                </div>
+            </div>
+
+            <p class="content clear">
+                Boo. There is a way to fix this, but it's ugly. It's called the <em>clearfix hack</em>.
+            </p>
+
+            <p class="content">
+                Let's try adding this new CSS:
+            </p>
+
+            <figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.clearfix</span> <span class="p">{</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+            <p class="content">
+                Now let's see what happens:
+            </p>
+
+            <div class="content">
+
+                <div class="elem clearfix">
+                    <span class="label">&lt;div class="clearfix"&gt;</span>
+                    <img src="img/ilta.png" alt="An Image">
+                    <p>
+                        Much better!
+                    </p>
+                </div>
+
+            </div>
+
+            <p class="content">
+                This works for modern browsers. If you want to support IE6 you will want to add the following:
+            </p>
+
+            <figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.clearfix</span> <span class="p">{</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="py">zoom</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+            <p class="content">
+                There are exotic browsers that may require extra attention. <a href="http://stackoverflow.com/questions/211383/which-method-of-clearfix-is-best">The world of clearfixing is pretty scary</a>, but this simple solution will work for the vast majority of browsers today.
+            </p>
+            <div class="nav-wrapper">
+                <a class="nav prev" href="9_clear.html">Previous</a>       
+                <a class="nav next" href="11_float-layout.html">Next</a>
+            </div>
+            <footer>
+                10 / 16
+            </footer>
+        </div>
+    </body>
+</html>

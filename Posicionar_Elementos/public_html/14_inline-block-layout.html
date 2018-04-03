@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Posicionar Elementos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=600">
+        <link rel="stylesheet" href="css/style.css">	
+        <link rel="stylesheet" href="css/code.css">	
+
+          <style>
+                nav.elem {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 25%;
+                }
+                .column {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 75%;
+                }
+            </style>
+
+    </head>
+    <body class="ltr">   
+        <div id="container">
+            <h1 class="content">inline-block layout</h1>
+            <div class="content">
+                <p>
+                    You can also use <code>inline-block</code> for layouts. There are a few things to keep in mind:
+                </p>
+                <ul>
+                    <li><code>inline-block</code> elements are affected by the <code>vertical-align</code> property, which you probably want set to <code>top</code>.
+                    </li>
+                    <li>You need to set the width of each column
+                    </li>
+                    <li>There will be a gap between the columns if there is any whitespace between them in the HTML
+                    </li>
+                </ul>
+            </div>
+         
+            <figure class="highlight">
+                <pre><code class="language-css" data-lang="css"><span class="nt">nav</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
+  <span class="nl">vertical-align</span><span class="p">:</span> <span class="nb">top</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.column</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
+  <span class="nl">vertical-align</span><span class="p">:</span> <span class="nb">top</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">75%</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </figure>
+            <div class="container elem">
+                <span class="label">&lt;div class="container"&gt;</span>
+                <nav class="elem elem-red">
+                    <span class="label">&lt;nav&gt;</span>
+                    <ul>
+                        <li>
+                            <a href="inline-block-layout.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="inline-block-layout.html">Taco Menu</a>
+                        </li>
+                        <li>
+                            <a href="inline-block-layout.html">Draft List</a>
+                        </li>
+                        <li>
+                            <a href="inline-block-layout.html">Hours</a>
+                        </li>
+                        <li>
+                            <a href="inline-block-layout.html">Directions</a>
+                        </li>
+                        <li>
+                            <a href="inline-block-layout.html">Contact</a>
+                        </li>
+                    </ul>
+                    <span class="endlabel">&lt;/nav&gt;</span>
+                </nav>
+                <div class="elem elem-red column">
+                    <span class="label">&lt;div class="column"&gt;</span>
+                    <section class="elem elem-green">
+                        <span class="label">&lt;section&gt;</span>
+                        <p>
+                            Tada!
+                        </p>
+                        <span class="endlabel">&lt;/section&gt;</span>
+                    </section>
+                    <section class="elem elem-green ipsum">
+                        <span class="label">&lt;section&gt;</span>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.
+                        </p>
+                        <span class="endlabel">&lt;/section&gt;</span>
+                    </section>
+                    <span class="endlabel">&lt;/div&gt;</span>
+                </div>
+            </div>
+            <div class="nav-wrapper">
+                <a class="nav prev" href="13_inline-block.html">Previous</a>
+                <a class="nav next" href="15_column.html">Next</a>
+            </div>
+            <footer>
+                14 / 16
+            </footer>
+        </div>
+    </body>
+</html>

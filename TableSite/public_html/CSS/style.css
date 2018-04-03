@@ -1,0 +1,70 @@
+
+/* ==========================================================================
+   Normatização CSS
+   ========================================================================== */
+
+body {
+    line-height: 1.5;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #444;
+}
+
+a {
+    color: #00ccff;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   Principal
+   ========================================================================== */
+
+ul#menu li {
+    display:inline;
+    font-size: larger;
+    padding-left:15px;
+    
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.header {
+    height: 48px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding:0 10px 0 10px;
+}
+
+table{
+    width:100%;
+}
+
+#main table td{
+    width:25%;
+    vertical-align: top;
+    padding:0 10px 0 10px;
+}
+
+.left{
+    text-align: left;
+}
+
+.right{
+    text-align: right;
+}
+
+.banner{
+    padding-bottom: 20px;
+}
+
+#main img{
+    width: 100%;
+}

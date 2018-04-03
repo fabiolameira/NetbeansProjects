@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Posicionar Elementos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=600">
+        <link rel="stylesheet" href="css/style.css">	
+        <link rel="stylesheet" href="css/code.css">	
+        <style>
+            .three-column {
+                padding: 1em;
+                -moz-column-count: 3;
+                -moz-column-gap: 1em;
+                -webkit-column-count: 3;
+                -webkit-column-gap: 1em;
+                column-count: 3;
+                column-gap: 1em;
+            }
+        </style>
+    </head>
+    <body class="ltr">   
+        <div id="container">
+            <h1 class="content">column</h1>
+            <p class="content">
+                There is a new set of CSS properties that let you easily make multi-column text. Have a look:
+            </p>
+
+            <figure class="highlight">
+                <pre><code class="language-css" data-lang="css"><span class="nc">.three-column</span> <span class="p">{</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+  <span class="nl">-moz-column-count</span><span class="p">:</span> <span class="m">3</span><span class="p">;</span>
+  <span class="nl">-moz-column-gap</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+  <span class="nl">-webkit-column-count</span><span class="p">:</span> <span class="m">3</span><span class="p">;</span>
+  <span class="nl">-webkit-column-gap</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+  <span class="nl">column-count</span><span class="p">:</span> <span class="m">3</span><span class="p">;</span>
+  <span class="nl">column-gap</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+            </figure>
+            <div class="content">
+                <section class="elem three-column ipsum">
+                    <span class="label">&lt;div class="three-column"&gt;</span>
+                    <div>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.
+                    </div>
+                    <span class="endlabel">&lt;/div&gt;</span>
+                </section>
+            </div>
+            <p class="content">
+                CSS columns are very new, so you need to use the prefixes, and it won't work <a href="http://caniuse.com/#search=column">through IE9 or in Opera Mini</a>. There are some more column-related properties, so <a href="http://www.quirksmode.org/css/multicolumn.html">click here to read more</a>. Otherwise, off to the next topic.
+            </p>
+            <div class="nav-wrapper">
+                <a class="nav prev" href="14_inline-block-layout.html">Previous</a>
+                <a class="nav next" href="16_flexbox.html">Next</a>
+            </div>
+            <footer>
+                15 / 16
+            </footer>
+        </div>
+    </body>
+</html>

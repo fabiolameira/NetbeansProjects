@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Table Less Site #02</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="CSS/style.css">
+    </head>
+    <body>
+        <div id="container">
+            <header class ="header">
+                <img src="IMG/logo.png" alt="Logo ESTG" class="logo">
+                <nav class="menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="whoweare.html">Quem Somos</a></li>
+                        <li><a href="#">Projectos</a></li>
+                        <li><a href="localization.html">Onde Estamos</a></li>
+                        <li><a href="contacts.html">Contactos</a></li>
+                    </ul>
+                </nav>  
+            </header>
+
+            <div class="column-01">
+                <img src="IMG/1.jpg" alt="Foto 1" class="banner">
+            </div>
+
+            <section id="Entorno" class="main-column clearfix">
+                <h2>Deixe o Seu Contacto</h2>
+                <form class="form">
+                    <div class="form-group">
+                        <label for="name-input">Nome:</label>
+                        <input id="name-input" type="text" name="name-input" placeholder="Introduza o seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birth-date-input">Data de Nascimento:</label>
+                        <input id="birth-date-input" type="date" name="birth-date-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="town-input">Localidade:</label>
+                        <input id="town-input" type="text" name="town-input" placeholder="Introduza a sua Localidae" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-input">Email:</label>
+                        <input id="email-input" type="email" name="email-input" placeholder="Introduza o seu Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone-input">Telemóvel:</label>
+                        <input id="phone-input" type="number" name="phone-input" placeholder="Introduza o seu Contacto" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submeter">
+                    </div>
+                </form>
+            </section>
+
+            <footer class="footer">
+                <p>Copyright ESTG 2017</p>
+            </footer>
+        </div>
+    </body>
+</html>
