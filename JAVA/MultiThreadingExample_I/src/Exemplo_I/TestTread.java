@@ -1,4 +1,4 @@
-package javamultithreadingexample_i;
+package Exemplo_I;
 
 public class TestTread {
 

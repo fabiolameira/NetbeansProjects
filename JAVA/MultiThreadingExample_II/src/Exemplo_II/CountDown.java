@@ -1,12 +1,11 @@
-package javamultithreadingexample_i;
+package Exemplo_II;
 
-public class RunnableDemo implements Runnable {
+public class CountDown implements Runnable {
 
-    private Thread t;
+    private Thread y;
     private final String threadName;
 
-    
-    RunnableDemo(String name) {
+    CountDown(String name) {
         threadName = name;
         System.out.println("Creating " + threadName);
     }
@@ -15,7 +14,7 @@ public class RunnableDemo implements Runnable {
         System.out.println("Running " + threadName);
 
         try {
-            for (int i = 4; i > 0; i--) {
+            for (int i = 200; i >= 100; i--) {
                 System.out.println("Thread: " + threadName + ", " + i);
                 Thread.sleep(5);
             }
@@ -24,14 +23,14 @@ public class RunnableDemo implements Runnable {
         } catch (Exception e) {
             System.out.println("Exception unspecified");
         }
-            System.out.println("Thread " + threadName + " exiting.");
+        System.out.println("Thread " + threadName + " exiting.");
     }
     
-    public void start () {
+        public void start () {
         System.out.println("Starting " + threadName);
-        if (t==null) {
-            t = new Thread (this.threadName);
-            t.start();
+        if (y ==null) {
+            y = new Thread (this,threadName);
+            y.start();
         }
     }
 
