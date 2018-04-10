@@ -10,31 +10,31 @@
   <body>
 		
 		<?php
-                    require_once './estudante.php';
                     
-                    session_start();
+                    if(session_status()==PHP_SESSION_NONE) session_start();
                     
-                    $username = $_POST["username"];
-                    $password = $_POST["password"];
+					$conecao = mysqli_connect("127.0.0.1", "root","", "chat");
+                    if (mysqli_connect_errno()) {
+                      echo "Falha a conectar ao MySQL: " . mysqli_connect_error();
+                    } else if (isset($_POST["username"]) && isset($_POST["password"])) {
+						
+						$username = $_POST["username"];
+						$password = $_POST["password"];
                     
-                    $found = false;
-                    foreach($estudantes as $e)
-                    {
-                        if($username == $e->getUsername() && $password == $e->getPassword()){
-                            $found = true;
-                            session_start();
-                            $_SESSION["username"]=$e->getUsername();
-                            $_SESSION["fraseApresentacao"]=$e->fraseApresentacao();
+						$sql = "SELECT * FROM utilizador where username = '" . $username . "' and password = '" . $password . "'";
+						$result = $conecao->query($sql);
+
+						if ($result->num_rows > 0) {
+							$row = $result->fetch_assoc();
+                            $_SESSION["username"]=$row['username'];
+                            $_SESSION["fraseApresentacao"]="ola o meu nome é ".$row['nome']." e tenho " .$row['idade']. " anos";;
                             include("index.php");
-                            break;
-                        }  
-                    }
-                    if(!$found)
-                    {
-                        $_SESSION["fraseApresentacao"]="Autênticação Falhada, Tente novamente";
-                        include("index.php");    
-                    }
-                        
+						} else {
+							$_SESSION["fraseApresentacao"]="Autênticação Falhada, Tente novamente";
+							include("index.php");
+						}
+					
+					} 
                     
                 
                 ?>
