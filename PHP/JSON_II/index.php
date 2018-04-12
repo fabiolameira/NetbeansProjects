@@ -21,7 +21,7 @@
         {
           
 ?>
-          <div class="header">
+          <div class="header clearfix">
 <?php
                 $username = $_SESSION["username"] ;
                 echo "Autenticado como $username - " . $_SESSION["fraseApresentacao"];
