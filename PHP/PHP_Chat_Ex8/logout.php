@@ -15,4 +15,5 @@ session_destroy();
 //ou
 
 include 'index.php';
+
 ?>

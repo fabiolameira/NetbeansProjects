@@ -12,5 +12,4 @@ $GLOBALS["db.connection"]->query("insert into mensagem (data,texto, idAutor, idT
 
 include './mysql/mysqlClose.php';
 
-include 'chat.php';
-
+include 'chat.php';    
