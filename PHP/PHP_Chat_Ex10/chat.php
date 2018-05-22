@@ -18,6 +18,14 @@ include './mysql/mysqlConnect.php';
         <!--COLOCAR AQUI neste div AS DECLARACOES DO ANGULAR ng-app ng-controller e id-->
         <div class="container" ng-app="chatApp" ng-controller="chatController" id="chatApp">
 
+            <script>
+
+                        app.controller('chatController', function ($scope) {
+                            $scope.mensagens = [];
+                        });
+
+            </script>
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     CHAT DE TESTE 
@@ -41,82 +49,89 @@ include './mysql/mysqlConnect.php';
 
                     <div class="chat" id="chat">
 
-
+                        <div class='row' ng-repeat="m in mensagens">
+                            <div class='col-md-12'>
+                                <label class='pull-left'>
+                                    <label class='label label-success'>
+                                        {{m.idAutor}}
+                                    </label>
+                                    {{m.data}}
+                                    {{m.texto}}
+                                </label>
+                            </div>
+                        </div>
 
                     </div>
 
                     <!--SOLUCAO todo o script faz parte da solução-->
                     <script>
-                        function chamaServicoLeitura()
-                        {
-                            var amigoDeConversa = $("select option:selected").attr("value");
+                                function chamaServicoLeitura()
+                                {
+                                    var amigoDeConversa = $("select option:selected").attr("value");
 
-                            $.getJSON(
-                                    "servicoLeitura.php",
-                                    {
-                                        "amigoDeConversaId": amigoDeConversa
-                                    },
-                                    function (jsonData)
-                                    {
-                                        //COLOCAR AQUI AS CHAMADAS AO ANGULAR PARA ALTERAR MENSAGENS
-
-                                        //NO EXERCICIO NO PONTO 12
-                                        //COMENTAR DAQUI ATÉ AO PROXIMO COMENTARIO
-                                        //de modo a ficar apenas com as chamadas ao angular
-                                        //dentro da function(jsonData)
-
-                                        $("#chat").empty();
-                                        for (m in jsonData)
-                                        {
-                                            var msg = jsonData[m];
-                                            var pull = "pull-right";
-                                            var infoStyle = "label-info";
-                                            if (msg.idAutor == <?php echo $id ?>)
+                                    $.getJSON(
+                                            "servicoLeitura.php",
                                             {
-                                                pull = "pull-left";
-                                                infoStyle = "label-success";
-                                            }
+                                                "amigoDeConversaId": amigoDeConversa
+                                            },
+                                            function (jsonData)
+                                            {
+                                                angular.element($("#chatApp")).scope().mensagens = jsonData;
+                                                angular.element($("#chatApp")).scope().$apply();
 
-                                            var html = "<div class='row'>" +
-                                                    "<div class='col-md-12'>" +
-                                                    "<label class='" + pull + "'>" +
-                                                    "<label class='label " + infoStyle + "'>" +
-                                                    msg.idAutor +
-                                                    "</label> - " +
-                                                    msg.data +
-                                                    " - " +
-                                                    msg.texto +
-                                                    "</label>" +
-                                                    "</div>" +
-                                                    "</div>";
-                                            $("#chat").append(html);
-                                        }
-                                        //COMENTAR ATÉ AQUI
+                                                //NO EXERCICIO NO PONTO 12
+                                                //COMENTAR DAQUI ATÉ AO PROXIMO COMENTARIO
+                                                //de modo a ficar apenas com as chamadas ao angular
+                                                //dentro da function(jsonData)
+
+//                                                $("#chat").empty();
+//                                                for (m in jsonData)
+//                                                {
+//                                                    var msg = jsonData[m];
+//                                                    var pull = "pull-right";
+//                                                    var infoStyle = "label-info";
+//                                                    if (msg.idAutor == <?php echo $id ?>)
+//                                                    {
+//                                                        pull = "pull-left";
+//                                                        infoStyle = "label-success";
+//                                                    }
+//
+//                                                    var html = "<div class='row'>" +
+//                                                            "<div class='col-md-12'>" +
+//                                                            "<label class='" + pull + "'>" +
+//                                                            "<label class='label " + infoStyle + "'>" +
+//                                                            msg.idAutor +
+//                                                            "</label> - " +
+//                                                            msg.data +
+//                                                            " - " +
+//                                                            msg.texto +
+//                                                            "</label>" +
+//                                                            "</div>" +
+//                                                            "</div>";
+//                                                    $("#chat").append(html);
+//                                                }
+                                                //COMENTAR ATÉ AQUI
 
 
 
-                                    });
-                        }
-                        $(document).ready(function () {
-                            setInterval(chamaServicoLeitura, 3000);
-                            $("#btnEnvio").click(
-                                    function () {
-                                        var amigoDeConversa = $("select option:selected").attr("value");
-                                        var mensagem = $("#mensagem").val();
-                                        $.post(
-                                                "addMensagemRest.php",
-                                                {
-                                                    "destinatario": amigoDeConversa,
-                                                    "mensagem": mensagem
-                                                },
-                                                function (dados)
-                                                {
-                                                    alert(dados);
-                                                }
-                                        );
-                                    });
+                                            });
+                                }
+                                $(document).ready(function () {
+                                    setInterval(chamaServicoLeitura, 3000);
+                                    $("#btnEnvio").click(
+                                            function () {
+                                                var amigoDeConversa = $("select option:selected").attr("value");
+                                                var mensagem = $("#mensagem").val();
+                                                $.post(
+                                                        "addMensagemRest.php",
+                                                        {
+                                                            "destinatario": amigoDeConversa,
+                                                            "mensagem": mensagem
+                                                        }
+                                                );
+                                            });
 
-                        });
+                                });
                     </script>
                     <form class="form-horizontal" action="addMensagem.php" method="post">
                         <!--NOVO DO OBJETIVO 2-->
@@ -127,7 +142,7 @@ include './mysql/mysqlConnect.php';
                             while ($row = $result->fetch_assoc()) {
                                 ?>
                                 <option value="<?php echo $row["id"] ?>">
-                                <?php echo $row["nome"] ?>
+                                    <?php echo $row["nome"] ?>
                                 </option>    
                                 <?php
                             }
