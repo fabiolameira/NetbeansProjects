@@ -19,7 +19,7 @@ include './mysql/mysqlConnect.php';
         <div class="container" ng-app="chatApp" ng-controller="chatController" id="chatApp">
 
             <script>
-
+                        var app = angular.module('chatApp', []);
                         app.controller('chatController', function ($scope) {
                             $scope.mensagens = [];
                         });
