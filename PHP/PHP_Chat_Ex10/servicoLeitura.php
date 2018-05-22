@@ -7,17 +7,24 @@ include './mysql/mysqlConnect.php';
 
 $amigoDeConversaId = $_GET["amigoDeConversaId"];
 
-session_start();
+if (session_status() == PHP_SESSION_NONE)
+    session_start();
 $id = $_SESSION["id"];
-$result = $GLOBALS["db.connection"]->query(
-        "select * from mensagem where "
-        . " ( idAutor = $id and idTarget = $amigoDeConversaId ) "
-        . " OR "
-        . " ( idAutor = $amigoDeConversaId and idTarget = $id ) "
-        );
+$result = $GLOBALS["db.connection"]->query("select 
+  m.*,
+  autor.nome as nomeAutor,
+  amigo.nome as nomeAmigo
+  
+ from mensagem m 
+    join utilizador autor on autor.id = m.idAutor
+    join utilizador amigo on amigo.id = m.idTarget
+ where 
+	( idAutor = $id and idTarget = $amigoDeConversaId )
+         OR 
+    ( idAutor = $amigoDeConversaId and idTarget = $id );
+");
 
-if($result == false)
-{
+if ($result == false) {
     echo $GLOBALS["db.connection"]->error;
 }
 
@@ -33,17 +40,16 @@ include './mysql/mysqlClose.php';
 
 /*
  * Se quiser ver como fica no HTML descomente o script seguinte.
-?>
-<script>
-    
-    var json = <?php echo json_encode($todos);?>;
-    document.write(json[0].texto);
-</script>
-<?php
-*/
+  ?>
+  <script>
+
+  var json = <?php echo json_encode($todos);?>;
+  document.write(json[0].texto);
+  </script>
+  <?php
+ */
 //Deixe estar isto pode fazer falta para imprimir algum erro de conversao de texto do json
 //caso o sistema do NetBeans não tenha os caracteres no encoding esperado
 //echo json_last_error_msg();
-
 ?>
 

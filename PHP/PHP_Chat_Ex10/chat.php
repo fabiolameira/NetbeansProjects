@@ -19,11 +19,10 @@ include './mysql/mysqlConnect.php';
         <div class="container" ng-app="chatApp" ng-controller="chatController" id="chatApp">
 
             <script>
-                        var app = angular.module('chatApp', []);
-                        app.controller('chatController', function ($scope) {
-                            $scope.mensagens = [];
-                        });
-
+                var app = angular.module('chatApp', []);
+                app.controller('chatController', function ($scope) {
+                $scope.mensagens = [];
+                });
             </script>
 
             <div class="panel panel-default">
@@ -51,9 +50,9 @@ include './mysql/mysqlConnect.php';
 
                         <div class='row' ng-repeat="m in mensagens">
                             <div class='col-md-12'>
-                                <label class='pull-left'>
-                                    <label class='label label-success'>
-                                        {{m.idAutor}}
+                                <label ng-class="{'pull-left': m.idAutor == <?php echo $id ?>,'pull-right' : m.idAutor != <?php echo $id ?>}">
+                                    <label class='label' ng-class="{'label-success': m.idAutor == <?php echo $id ?>,'label-info' : m.idAutor != <?php echo $id ?>}">
+                                        {{m.nomeAutor}}
                                     </label>
                                     {{m.data}}
                                     {{m.texto}}
@@ -65,24 +64,22 @@ include './mysql/mysqlConnect.php';
 
                     <!--SOLUCAO todo o script faz parte da solução-->
                     <script>
-                                function chamaServicoLeitura()
+                        function chamaServicoLeitura()
+                        {
+                        var amigoDeConversa = $("select option:selected").attr("value");
+                        $.getJSON(
+                                "servicoLeitura.php",
+                        {
+                        "amigoDeConversaId": amigoDeConversa
+                        },
+                                function (jsonData)
                                 {
-                                    var amigoDeConversa = $("select option:selected").attr("value");
-
-                                    $.getJSON(
-                                            "servicoLeitura.php",
-                                            {
-                                                "amigoDeConversaId": amigoDeConversa
-                                            },
-                                            function (jsonData)
-                                            {
-                                                angular.element($("#chatApp")).scope().mensagens = jsonData;
-                                                angular.element($("#chatApp")).scope().$apply();
-
-                                                //NO EXERCICIO NO PONTO 12
-                                                //COMENTAR DAQUI ATÉ AO PROXIMO COMENTARIO
-                                                //de modo a ficar apenas com as chamadas ao angular
-                                                //dentro da function(jsonData)
+                                angular.element($("#chatApp")).scope().mensagens = jsonData;
+                                angular.element($("#chatApp")).scope().$apply();
+                                //NO EXERCICIO NO PONTO 12
+                                //COMENTAR DAQUI ATÉ AO PROXIMO COMENTARIO
+                                //de modo a ficar apenas com as chamadas ao angular
+                                //dentro da function(jsonData)
 
 //                                                $("#chat").empty();
 //                                                for (m in jsonData)
@@ -110,30 +107,25 @@ include './mysql/mysqlConnect.php';
 //                                                            "</div>";
 //                                                    $("#chat").append(html);
 //                                                }
-                                                //COMENTAR ATÉ AQUI
+                                //COMENTAR ATÉ AQUI
 
 
-
-                                            });
-                                }
-                                $(document).ready(function () {
-                                    setInterval(chamaServicoLeitura, 3000);
-                                    $("#btnEnvio").click(
-                                            function () {
-                                                var amigoDeConversa = $("select option:selected").attr("value");
-                                                var mensagem = $("#mensagem").val();
-                                                $.post(
-                                                        "addMensagemRest.php",
-                                                        {
-                                                            "destinatario": amigoDeConversa,
-                                                            "mensagem": mensagem
-                                                        }
-                                                );
-                                            });
 
                                 });
+                        }
+                        $(document).ready(function () {
+                            setInterval(chamaServicoLeitura, 3000);
+                            $("#btnEnvio").click(function () {
+                                    var amigoDeConversa = $("select option:selected").attr("value");
+                                    var mensagem = $("#mensagem").val();
+                                    $("#mensagem").val("");
+                                    $.post("addMensagemRest.php",{
+                                            'destinatario':amigoDeConversa,
+                                            'mensagem':mensagem
+                                    });
+                            });
+                        });
                     </script>
-                    <form class="form-horizontal" action="addMensagem.php" method="post">
                         <!--NOVO DO OBJETIVO 2-->
                         <select id="destinatarioSelect" class="form-control" name="destinatario">
                             <?php
@@ -154,7 +146,6 @@ include './mysql/mysqlConnect.php';
                         <input id="mensagem" placeholder="Coloque aqui a mensagem..." class="form-control" type="text" name="mensagem"/>
                         <!--SOLUCAO DAR ID E MUDAR O TYPE PARA button para nao submeter o form-->
                         <button id="btnEnvio" class="btn btn-success btn-xs" type="button">Enviar</button>
-                    </form>
                 </div>
             </div>
 
