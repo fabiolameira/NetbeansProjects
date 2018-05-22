@@ -7,8 +7,7 @@
 </style>
 <div class="header clearfix">
     <?php
-    if (session_status() == PHP_SESSION_NONE)
-        session_start();
+    if (session_status() == PHP_SESSION_NONE) session_start();
     $username = $_SESSION["username"];
     echo "Autenticado como $username - " . $_SESSION["fraseApresentacao"];
     ?>
