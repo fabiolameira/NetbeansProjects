@@ -45,7 +45,6 @@
 
                         </form>
                     </div>
-
                 </div>
 
                 <?php
@@ -56,6 +55,8 @@
             <a class="btn btn-info" href="novoUser.php">Novo Registo</a>
 
             <a class="btn btn-default" href="chat.php">Entrar no CHAT</a>
+            
+            <a class="btn btn-default" href="posts.php">Entrar no Feed</a>
 
 
     </body>
