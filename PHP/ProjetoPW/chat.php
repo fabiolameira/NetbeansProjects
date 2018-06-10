@@ -8,13 +8,31 @@ include './mysql/mysqlConnect.php';
         <script src="bootstrap/jquery.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <!--NOVO SOLUCAO-->
+        <script src="angular/angular.min.js"></script>
     </head>
     <body>
         <?php
         include './header.php';
         ?>
+        <?php
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
+        $id = $_SESSION["id"];
+        ?>
 
-        <div class="container">
+        <!--NOVO SOLUCAO foram colocados os atributos ng-app ng-controller e id-->
+        <div id="chatApp" class="container" ng-app="chatApp" ng-controller="chatController">
+
+            <!--NOVO SOLUCAO todo o script é novo-->
+            <script>
+                var app = angular.module('chatApp', []);
+                app.controller('chatController', function ($scope) {
+                $scope.mensagens = [];
+                });
+            </script>
+
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -29,112 +47,83 @@ include './mysql/mysqlConnect.php';
                             padding:10px;
                         }
                     </style>
-
-                    <?php
-                    session_start();
-                    $id = $_SESSION["id"];
-                    ?>
-
                     <div class="chat" id="chat">
-
-                        <?php
-                        //Segunda query melhorada
-                        $result = $GLOBALS["db.connection"]->query(
-                                "select * from mensagem m join utilizador autor on autor.id = m.idAutor "
-                                . " where "
-                                . " ( m.idAutor = $id ) "
-                                . " OR "
-                                . " ( m.idTarget = $id ) "
-                        );
-
-                        while ($row = $result->fetch_assoc()) {
-                            if ($row["idAutor"] == $id) {
-                                echo "<div class='row'><div class='col-md-12'><label class='pull-left'> <label class='label label-success'>" . $row["nome"] . "</label> - " . $row["data"] . " - " . $row["texto"] . "</label></div></div>";
-                            } else {
-                                echo "<div class='row'><div class='col-md-12'><label class=' pull-right'>  <label class='label label-info'>" . $row["nome"] . "</label> - " . $row["data"] . " - " . $row["texto"] . "</label></div></div>";
-                            }
-                        }
-                        ?>
+                        <div class='row' ng-repeat="m in mensagens" >
+                            <div class='col-md-12'>
+                                <label ng-class="{'pull-left': m.idAutor == <?php echo $id ?>,'pull-right' : m.idAutor != <?php echo $id ?>}">
+                                    <label class='label' ng-class="{'label-success': m.idAutor == <?php echo $id ?>,'label-info' : m.idAutor != <?php echo $id ?>}"><!--Alterado SOLUCAO-->
+                                        {{m.nomeAutor}}
+                                    </label> - 
+                                    {{m.data}}
+                                    - 
+                                    {{m.texto}} 
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
+                    <!--SOLUCAO todo o script faz parte da solução-->
                     <script>
-                        function chamaServicoLeitura() {
-                            var amigoDeConversa = $("select option:selected").attr("value");
-
-                            $.getJSON(
-                                    "servicoLeitura.php", {
-                                        "amigoDeConversaId": amigoDeConversa
-                                    },
-                                    function (jsonData) {
-
-                                        $("#chat").empty();
-                                        for (m in jsonData) {
-                                            var msg = jsonData[m];
-                                            var pull = "pull-right";
-                                            var infoStyle = "label-info";
-                                            if (msg.idAutor == <?php echo $id ?>) {
-                                                pull = "pull-left";
-                                                infoStyle = "label-success";
-                                            }
-
-                                            var html = "<div class='row'>" +
-                                                    "<div class='col-md-12'>" +
-                                                    "<label class='" + pull + "'>" +
-                                                    "<label class='label " + infoStyle + "'>" +
-                                                    msg.idAutor +
-                                                    "</label> - " +
-                                                    msg.data +
-                                                    " - " +
-                                                    msg.texto +
-                                                    "</label>" +
-                                                    "</div>" +
-                                                    "</div>";
-                                            $("#chat").append(html);
-                                        }
-                                    });
+                        function chamaServicoLeitura()
+                        {
+                        var amigoDeConversa = $("select option:selected").attr("value");
+                        $.getJSON(
+                                "servicoLeitura.php",
+                        {
+                        "amigoDeConversaId" : amigoDeConversa
+                        },
+                                function(jsonData)
+                                {
+                                angular.element($("#chatApp")).scope().mensagens = jsonData;
+                                angular.element($("#chatApp")).scope().$apply();
+                                });
                         }
-                        $(document).ready(function () {
-                            setInterval(chamaServicoLeitura, 3000);
-                            $("#btnEnvio").click(
-                                    function () {
-                                        var amigoDeConversa = $("select option:selected").attr("value");
-                                        var mensagem = $("#mensagem").val();
-                                        $.post(
-                                                "addMensagemRest.php", {
-                                                    "destinatario": amigoDeConversa,
-                                                    "mensagem": mensagem
-                                                },
-                                                function (dados) {
-                                                    alert(dados);
-                                                }
-                                        );
-                                    });
+                        $(document).ready(function(){
+                        setInterval(chamaServicoLeitura, 1000);
+                        $("#btnEnvio").click(
+                                function(){
+                                var amigoDeConversa = $("select option:selected").attr("value");
+                                var mensagem = $("#mensagem").val();
+                                $("#mensagem").val("");
+                                $.post(
+                                        "addMensagemRest.php",
+                                {
+                                "destinatario" : amigoDeConversa,
+                                        "mensagem" :  mensagem
+                                },
+                                        function(dados)
+                                        {
+                                        //alert(dados);
+                                        }
+                                );
+                                });
                         });
                     </script>
 
-                    <form class="form-horizontal" action="addMensagem.php" method="post">
-                        <!--NOVO DO OBJETIVO 2-->
-                        <select id="destinatarioSelect" class="form-control" name="destinatario">
-                            <?php
-                            $result = $GLOBALS["db.connection"]->query(
-                                    "select * from utilizador");
-                            while ($row = $result->fetch_assoc()) {
-                                ?>
-                                <option value="<?php echo $row["id"] ?>">
-                                    <?php echo $row["nome"] ?>
-                                </option>    
-                                <?php
-                            }
+                    <!--NOVO DO OBJETIVO 2-->
+                    <select id="destinatarioSelect" class="form-control" name="destinatario">
+                        <?php
+                        $result = $GLOBALS["db.connection"]->query(
+                                "select * from utilizador");
+                        while ($row = $result->fetch_assoc()) {
                             ?>
-                        </select>
-                        <!--NOVO DO OBJETIVO 2-->
+                            <option value="<?php echo $row["id"] ?>">
+                                <?php echo $row["nome"] ?>
+                            </option>    
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <!--NOVO DO OBJETIVO 2-->
 
-                        <input id="mensagem" placeholder="Coloque aqui a mensagem..." class="form-control" type="text" name="mensagem"/>
-                        <!--SOLUCAO DAR ID E MUDAR O TYPE PARA button para nao submeter o form-->
-                        <button id="btnEnvio" class="btn btn-success btn-xs" type="button">Enviar</button>
-                    </form>
+
+                    <input id="mensagem" placeholder="Coloque aqui a mensagem..." class="form-control" type="text" name="mensagem"/>
+                    <!--SOLUCAO DAR ID E MUDAR O TYPE PARA button para nao submeter o form-->
+                    <button id="btnEnvio" class="btn btn-success btn-xs" type="button">Enviar</button>
+
                 </div>
             </div>
+
         </div>
 
     </body>

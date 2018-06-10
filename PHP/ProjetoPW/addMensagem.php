@@ -18,3 +18,4 @@ $GLOBALS["db.connection"]->query($sql_novo);
 include './mysql/mysqlClose.php';
 
 include 'chat.php';
+

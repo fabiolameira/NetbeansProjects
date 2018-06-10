@@ -9,11 +9,22 @@ $amigoDeConversaId = $_GET["amigoDeConversaId"];
 
 session_start();
 $id = $_SESSION["id"];
+
+//NOVA QUERY PARA A SOLUCAO DO EXERCICIO 10
 $result = $GLOBALS["db.connection"]->query(
-        "select * from mensagem where "
-        . " ( idAutor = $id and idTarget = $amigoDeConversaId ) "
-        . " OR "
-        . " ( idAutor = $amigoDeConversaId and idTarget = $id ) "
+        "select " .
+            "m.*, " .
+            "autor.nome as nomeAutor, " .
+            "amigo.nome as nomeAmigo " .
+
+           "from mensagem m  " .
+              "join utilizador autor on autor.id = m.idAutor " .
+              "join utilizador amigo on amigo.id = m.idTarget " .
+           "where  " .
+              "( idAutor = $id and idTarget = $amigoDeConversaId ) " .
+                   "OR " . 
+              "( idAutor = $amigoDeConversaId and idTarget = $id ) "
+        
         );
 
 if($result == false)

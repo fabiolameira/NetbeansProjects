@@ -23,34 +23,36 @@ if ($result->num_rows > 0) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <tr>
-                            <td><?php echo $row["id"] ?></td>
-                            <td><?php echo $row["username"] ?></td>
-                            <td><?php echo $row["nome"] ?></td>
-                            <td><?php echo $row["email"] ?></td>
-                            <td><?php echo $row["idade"] ?></td>
-                            <td><?php echo $row["morada"] ?></td>
-                            <td><?php echo $row["password"] ?></td>
-                            <td>
-                                <a href="deleteUser.php?id=<?php echo $row["id"] ?>"><span class="glyphicon glyphicon-remove"></span></a>
-                            </td>
+              <?php
+              while($row = $result->fetch_assoc())           
+              {
+                ?>
+                    <tr>
+                        <td><?php echo $row["id"] ?></td>
+                        <td><?php echo $row["username"] ?></td>
+                        <td><?php echo $row["nome"] ?></td>
+                        <td><?php echo $row["email"] ?></td>
+                        <td><?php echo $row["idade"] ?></td>
+                        <td><?php echo $row["morada"] ?></td>
+                        <td><?php echo $row["password"] ?></td>
+                        <td>
+                            <a href="deleteUser.php?id=<?php echo $row["id"] ?>"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
 
-                        </tr>
+                    </tr>
 
-                        <?php
-                    }
-                    ?>
+                <?php
+              }
+
+              ?>
                 </tbody>
             </table>
         </div>
     </div>
-    <?php
+  <?php
 } else {
     echo "0 resultados";
 }
 
-include './mysql/mysqlClose.php';
+    include './mysql/mysqlClose.php';
 ?>

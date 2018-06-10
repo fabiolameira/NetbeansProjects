@@ -1,5 +1,4 @@
 <?php
-
 //SOLUCAO
 include './mysql/mysqlConnect.php';
 
