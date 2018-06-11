@@ -12,24 +12,82 @@ include './mysql/mysqlConnect.php';
         <!--NOVO SOLUCAO-->
         <script src="angular/angular.min.js"></script>
     </head>
-    <body>
+    <body ng-app="rootApp">
+        <script>
+            var minhasApps = [];
+            var rootApp = angular.module('rootApp', minhasApps);
+        </script>
         <?php
         include './header.php';
         ?>
         <?php
-        if (session_status() == PHP_SESSION_NONE)
+        if (!isset($_SESSION))
             session_start();
         $id = $_SESSION["id"];
         ?>
 
         <!--NOVO SOLUCAO foram colocados os atributos ng-app ng-controller e id-->
-        <div id="chatApp" class="container" ng-app="chatApp" ng-controller="chatController">
+        <div ng-init="inicializa()" id="chatApp" class="container" ng-app="chatApp" ng-controller="chatController">
 
             <!--NOVO SOLUCAO todo o script é novo-->
             <script>
                 var app = angular.module('chatApp', []);
+                minhasApps.push('chatApp'); //LINHA NOVA puxando a indexApp para as minhasApps que é o array de modulos da rootApp
                 app.controller('chatController', function ($scope) {
                 $scope.mensagens = [];
+                $scope.amigoDeConversa = 0;
+                $scope.mensagem = "";
+                $scope.mensagemErro = "";
+                $scope.inicializa = function()
+                {
+                setInterval("angular.element($('#chatApp')).scope().chamaServicoLeitura()", 1000);
+                }
+
+                $scope.envia = function()
+                {
+                //var amigoDeConversa = $("select option:selected" ).attr("value");
+                //var mensagem = $("#mensagem").val();
+                //$("#mensagem").val("");
+                $scope.mensagemErro = "";
+                $.getJSON(
+                        "addMensagemRest.php",
+                {
+                "destinatario" : $scope.amigoDeConversa,
+                        "mensagem" :  $scope.mensagem
+                },
+                        function(dados)
+                        {
+                        $scope.mensagem = "";
+                        //alert(dados);
+                        if (dados.resposta == false)
+                        {
+                        $scope.mensagemErro = "ERRO DE COMUNICACAO";
+                        }
+                        $scope.$apply();
+                        },
+                        function(){
+                        $scope.mensagemErro = "ERRO DE COMUNICACAO";
+                        $scope.$apply();
+                        }
+                );
+                };
+                $scope.chamaServicoLeitura = function()
+                {
+                //var amigoDeConversa = $("select option:selected" ).attr("value");
+                $.getJSON(
+                        "servicoLeitura.php",
+                {
+                "amigoDeConversaId" : $scope.amigoDeConversa
+                },
+                        function(jsonData)
+                        {
+                        //angular.element($("#chatApp")).scope().mensagens = jsonData;
+                        //angular.element($("#chatApp")).scope().$apply();
+                        $scope.mensagens = jsonData;
+                        $scope.$apply();
+                        });
+                }
+
                 });
             </script>
 
@@ -63,52 +121,17 @@ include './mysql/mysqlConnect.php';
                     </div>
 
                     <!--SOLUCAO todo o script faz parte da solução-->
-                    <script>
-                        function chamaServicoLeitura()
-                        {
-                        var amigoDeConversa = $("select option:selected").attr("value");
-                        $.getJSON(
-                                "servicoLeitura.php",
-                        {
-                        "amigoDeConversaId" : amigoDeConversa
-                        },
-                                function(jsonData)
-                                {
-                                angular.element($("#chatApp")).scope().mensagens = jsonData;
-                                angular.element($("#chatApp")).scope().$apply();
-                                });
-                        }
-                        $(document).ready(function(){
-                        setInterval(chamaServicoLeitura, 1000);
-                        $("#btnEnvio").click(
-                                function(){
-                                var amigoDeConversa = $("select option:selected").attr("value");
-                                var mensagem = $("#mensagem").val();
-                                $("#mensagem").val("");
-                                $.post(
-                                        "addMensagemRest.php",
-                                {
-                                "destinatario" : amigoDeConversa,
-                                        "mensagem" :  mensagem
-                                },
-                                        function(dados)
-                                        {
-                                        //alert(dados);
-                                        }
-                                );
-                                });
-                        });
-                    </script>
+
 
                     <!--NOVO DO OBJETIVO 2-->
-                    <select id="destinatarioSelect" class="form-control" name="destinatario">
-                        <?php
-                        $result = $GLOBALS["db.connection"]->query(
-                                "select * from utilizador");
-                        while ($row = $result->fetch_assoc()) {
-                            ?>
+                    <select class="form-control" ng-model="amigoDeConversa">
+<?php
+$result = $GLOBALS["db.connection"]->query(
+        "select * from utilizador");
+while ($row = $result->fetch_assoc()) {
+    ?>
                             <option value="<?php echo $row["id"] ?>">
-                                <?php echo $row["nome"] ?>
+                            <?php echo $row["nome"] ?>
                             </option>    
                             <?php
                         }
@@ -116,10 +139,12 @@ include './mysql/mysqlConnect.php';
                     </select>
                     <!--NOVO DO OBJETIVO 2-->
 
-
-                    <input id="mensagem" placeholder="Coloque aqui a mensagem..." class="form-control" type="text" name="mensagem"/>
+                    <div ng-show="mensagemErro != ''" class="alert alert-danger">
+                        {{mensagemErro}}
+                    </div>
+                    <input ng-model="mensagem"  placeholder="Coloque aqui a mensagem..." class="form-control" type="text" />
                     <!--SOLUCAO DAR ID E MUDAR O TYPE PARA button para nao submeter o form-->
-                    <button id="btnEnvio" class="btn btn-success btn-xs" type="button">Enviar</button>
+                    <button ng-click="envia()" class="btn btn-success btn-xs" type="button">Enviar</button>
 
                 </div>
             </div>

@@ -85,12 +85,7 @@ include './mysql/mysqlConnect.php';
 
                             $scope.removeLike = function ($_idPost, $_meuLike)
                             {
-                                //var amigoDeConversa = $("select option:selected" ).attr("value");
-                                //var mensagem = $("#mensagem").val();
-                                //$("#mensagem").val("");
                                 $scope.mensagemErro = "";
-                                //alert("$_idPost");
-                                //alert($scope.meuLike);
                                 $scope.maxIdPost = 0;
 
                                 if ($_meuLike == '1')

@@ -10,6 +10,8 @@ $amigoDeConversaId = $_GET["amigoDeConversaId"];
 session_start();
 $id = $_SESSION["id"];
 
+$GLOBALS["db.connection"]->query("update mensagem set lida = 1 where ( idAutor = $amigoDeConversaId and idTarget = $id ) ");
+        
 //NOVA QUERY PARA A SOLUCAO DO EXERCICIO 10
 $result = $GLOBALS["db.connection"]->query(
         "select " .

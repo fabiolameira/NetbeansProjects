@@ -2,11 +2,13 @@
 //SOLUCAO
 include './mysql/mysqlConnect.php';
 
-$mensagem = $_POST["mensagem"];
+header("Content-type: application/json");
+
+$mensagem = $_GET["mensagem"]; //MUDOU PARA GET
 
 //NOVO
 session_start();
-$destinatario = $_POST["destinatario"];
+$destinatario = $_GET["destinatario"]; //MUDOU PARA GET
 $id = $_SESSION["id"];
 
 //$sql_Antes = "insert into mensagem (data,texto) VALUES(NOW(),'$mensagem')";
@@ -18,6 +20,7 @@ $result = $GLOBALS["db.connection"]->query($sql_novo);
 include './mysql/mysqlClose.php';
 
 if($result == TRUE)
-    echo "OK";
+    echo '{ "resposta" : true }';
 else
-    echo "FALSE";
+    echo '{ "resposta" : false }';
+

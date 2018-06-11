@@ -8,6 +8,5 @@ $GLOBALS["db.user"] = "root";
 $GLOBALS["db.pass"] = "";
 $GLOBALS["db.schema"] = "chat";
 
-
 ?>
 

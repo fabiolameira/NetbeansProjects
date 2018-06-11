@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-log-in"></span> Entrar</button>
+                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-log-in"></span> Registar</button>
 
                 </form>
             </div>
