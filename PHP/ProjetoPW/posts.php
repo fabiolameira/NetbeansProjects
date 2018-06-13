@@ -13,9 +13,7 @@ include './mysql/mysqlConnect.php';
     <body>
         <div ng-init="inicializa()" id="postApp" class="container" ng-app="postApp" ng-controller="postController">
 
-            <!--NOVO SOLUCAO todo o script é novo-->
             <script>
-
                         app.controller('postController', function ($scope) {
                             $scope.posts = [];
                             $scope.frases = "";
@@ -29,7 +27,6 @@ include './mysql/mysqlConnect.php';
 
                             $scope.enviar = function (p)
                             {
-                                //alert("Post on");
                                 $.post(
                                         "addPostsRest.php",
                                         {
@@ -54,10 +51,6 @@ include './mysql/mysqlConnect.php';
                                         },
                                         function (jsonData)
                                         {
-                                            //angular.element($("#chatApp")).scope().mensagens = jsonData;
-                                            //angular.element($("#chatApp")).scope().$apply();
-
-
                                             if ($scope.maxIdPost == 0)
                                             {
                                                 $scope.posts = jsonData;
@@ -79,18 +72,22 @@ include './mysql/mysqlConnect.php';
                                             }
 
                                             $scope.$apply();
-
                                         });
                             };
 
+                            $scope.removePost = function ($_idPost) {
+                                $.getJSON(
+                                        "removePost.php",
+                                        {
+                                            "idPost": $_idPost
+                                        }
+                                );
+                            };
+
+
                             $scope.removeLike = function ($_idPost, $_meuLike)
                             {
-                                //var amigoDeConversa = $("select option:selected" ).attr("value");
-                                //var mensagem = $("#mensagem").val();
-                                //$("#mensagem").val("");
                                 $scope.mensagemErro = "";
-                                //alert("$_idPost");
-                                //alert($scope.meuLike);
                                 $scope.maxIdPost = 0;
 
                                 if ($_meuLike == '1')
@@ -103,12 +100,10 @@ include './mysql/mysqlConnect.php';
                                             function (dados)
                                             {
                                                 $scope.posts = "";
-                                                //alert(dados);
                                                 if (dados.resposta == false)
                                                 {
                                                     $scope.mensagemErro = "ERRO DE COMUNICACAO";
                                                 }
-                                                //alert("dados: " + dados.resposta);
                                                 $scope.chamaServicoLeituraPosts();
                                                 $scope.$apply();
 
@@ -121,7 +116,6 @@ include './mysql/mysqlConnect.php';
                                 }
                                 if ($_meuLike == '0')
                                 {
-
                                     $.getJSON(
                                             "doMeuLike.php",
                                             {
@@ -130,12 +124,10 @@ include './mysql/mysqlConnect.php';
                                             function (dados)
                                             {
                                                 $scope.posts = "";
-                                                //alert(dados);
                                                 if (dados.resposta == false)
                                                 {
                                                     $scope.mensagemErro = "ERRO DE COMUNICACAO";
                                                 }
-                                                //alert("dados: " + dados.resposta);
                                                 $scope.chamaServicoLeituraPosts();
                                                 $scope.$apply();
 
@@ -148,7 +140,7 @@ include './mysql/mysqlConnect.php';
                                 }
                             };
                         });
-
+                        
             </script>
 
             <div class="col-md-12">
@@ -165,14 +157,14 @@ include './mysql/mysqlConnect.php';
             <style>
                 .post {
                     border: 1px solid lightgray;
-                    padding:10px;
+                    padding: 10px;
                 }
             </style>
 
             <style>
                 .post{
                     border: 1px solid lightgray;
-                    padding:10px;
+                    padding: 10px;
                 }
             </style>
 
@@ -184,7 +176,8 @@ include './mysql/mysqlConnect.php';
                                 <div class="panel-footer">
                                     <span class="glyphicon glyphicon-user" id="start"></span> <label id="started">By</label> {{p.nome}} |
                                     <label id="started">{{p.data}}</label> |
-                                    <a href="" ng-click="removeLike(p.idPost, p.meulike);" id="startedby"><img src="img/{{p.meulike}}.png" style="height: 10px;"/></a> {{p.likes}} | 
+                                    <a ng-click="removeLike(p.idPost, p.meulike);" id="startedby"><img src="img/{{p.meulike}}.png" style="height: 10px;"/></a> {{p.likes}} |
+                                    <a href="index.php" ng-click="removePost(p.idPost);" ><span class="glyphicon glyphicon-remove pull-right"></span></a>
                                 </div>
                                 <div class="panel-body">
                                     <p>{{p.texto}}</p>

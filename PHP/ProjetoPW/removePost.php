@@ -4,14 +4,13 @@ include './mysql/mysqlConnect.php';
 
 header("Content-type: application/json");
 
-
 session_start();
 
-$id = $_SESSION["id"];
+$idPost = $_GET["idPost"];
 
-$sql_novo = "Delete into post (idAutor,idPost) "
-        . " VALUES(NOW(),'$posts',$id,)";
-       
+$sql_novo = "DELETE "
+        . " FROM post"
+        . " WHERE  idPost = " . $idPost;
 
 $result = $GLOBALS["db.connection"]->query($sql_novo);
 

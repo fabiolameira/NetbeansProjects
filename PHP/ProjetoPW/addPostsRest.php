@@ -1,16 +1,14 @@
 <?php
-//SOLUCAO
+
 include './mysql/mysqlConnect.php';
 
 header("Content-type: application/json");
 
-$frases = $_POST["frases"]; //MUDOU PARA GET
+$frases = $_POST["frases"];
 
-//NOVO
 session_start();
 $id = $_SESSION["id"];
 
-//$sql_Antes = "insert into mensagem (data,texto) VALUES(NOW(),'$mensagem')";
 $sql_novo = "insert into post (data,texto, idAutor) "
         . " VALUES(NOW(),'$frases',$id)";
 

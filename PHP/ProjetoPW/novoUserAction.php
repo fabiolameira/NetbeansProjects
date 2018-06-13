@@ -1,5 +1,4 @@
 <?php
-+
 
 $nome = $_POST["nome"];
 $username = $_POST["username"];

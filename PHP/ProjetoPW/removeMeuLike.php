@@ -5,23 +5,21 @@ include './mysql/mysqlConnect.php';
 header("Content-type: application/json");
 
 session_start();
-$idPost = $_GET["idPost"]; //MUDOU PARA GET
+$idPost = $_GET["idPost"];
 $id = $_SESSION["id"];
 
 
 $sql_novo = "DELETE "
         . " FROM likes"
-        . " WHERE  idPost = ". $idPost
-        . " AND idAutor = ".$id;
+        . " WHERE  idPost = " . $idPost
+        . " AND idAutor = " . $id;
 
 $result = $GLOBALS["db.connection"]->query($sql_novo);
 
 include './mysql/mysqlClose.php';
 
-while($row = $result->fetch_assoc()) 
-{
-    
-         echo '{ "resposta" : true }';
-    
+while ($row = $result->fetch_assoc()) {
+
+    echo '{ "resposta" : true }';
 }
 

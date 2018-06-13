@@ -14,7 +14,7 @@
         echo "Autenticado como $username - " . $_SESSION["fraseApresentacao"];
         ?>
     </div> 
-    
+
     <?php include 'avisoChat.php'; ?>﻿
 
     <div class="col-sm-4" class="pull-right">

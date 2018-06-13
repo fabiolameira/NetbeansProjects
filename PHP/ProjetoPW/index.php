@@ -8,14 +8,12 @@
         <script src="angular/angular.min.js"></script>
     </head>
     <body ng-app="rootApp">
-
         <script>
             var minhasApps = [];
             var rootApp = angular.module('rootApp', minhasApps);
         </script>
 
         <div>
-
             <?php
             if (!isset($_SESSION))
                 session_start();
